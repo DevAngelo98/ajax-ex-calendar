@@ -29,7 +29,7 @@ $(document).ready(function(){
       url: "https://flynn.boolean.careers/exercises/api/holidays?year=2018&month=" + month,
       method: "GET",
       success: function(datoRicevuto){
-        $(".date *").remove();        
+        $("ul *").remove();        
         var mese = (month+1);
         //Inserisco il nome dell'anno
         var nomeMese = moment("2018-"+mese, "YYYY-M").format("MMMM" + " 2018");
@@ -47,18 +47,84 @@ $(document).ready(function(){
         for(var i=1; i<=numeroDiGiorni;i++){
           var dataControllo;
           var date = moment("2018-"+mese, "YYYY-M").format(i+" MMMM");
-          var context = {data: date};
-          var html = template(context);
-          $(".date").append(html);
+          var giornoTemp = moment("2018-"+mese+"-"+i, "YYYY-M-D").format("dddd");
+          var valInserire = moment("2018-"+mese+"-"+i, "YYYY-M-D").format("D");
+          console.log(giornoTemp);
+          var context = {data: valInserire, giorno:giornoTemp};
+          var html = template(context)
+
+          switch (giornoTemp) { 
+            case 'lunedì': 
+              $(".lunedi ul").append(html);
+              break;
+            case 'martedì': 
+              $(".martedi ul").append(html);
+              break;
+            case 'mercoledì': 
+              $(".mercoledi ul").append(html);
+              break;		
+            case 'giovedì': 
+              $(".giovedi ul").append(html);
+              break;
+            case 'venerdì': 
+              $(".venerdi ul").append(html);
+              break;
+            case 'sabato': 
+              $(".sabato ul").append(html);
+              break;
+            case 'domenica': 
+              $(".domenica ul").append(html);
+              break;
+            default:
+              console.log('Nobody Wins!');
+          }
+          
+
+
+
+          // $(".date").append(html);
 
           arrayRicevuto.forEach(element => {
             dataControllo = moment(element.date, "YYYY-MM-DD").format("D MMMM");
             if(dataControllo==date){
-              $(".date li").last().remove();
-              var festivo = date + " - " + element.name;
-              var contextFestivo = {data: festivo, color: "red"};
+              // $(".date li").last().remove();
+              var newLine = /\n+/g;
+              var festivo = valInserire;
+              var contextFestivo = {data: festivo, color: "red", festa: element.name};
               var htmlFestivo = template(contextFestivo);
-              $(".date").append(htmlFestivo);
+             
+              switch (giornoTemp) { 
+                case 'lunedì': 
+                  $(".lunedi ul li").last().remove(); 
+                  $(".lunedi ul").append(htmlFestivo);
+                  break;
+                case 'martedì': 
+                  $(".martedi ul li").last().remove(); 
+                  $(".martedi ul").append(htmlFestivo);
+                  break;
+                case 'mercoledì': 
+                  $(".mercoledi ul li").last().remove(); 
+                  $(".mercoledi ul").append(htmlFestivo);
+                  break;		
+                case 'giovedì': 
+                  $(".giovedi ul li").last().remove(); 
+                  $(".giovedi ul").append(htmlFestivo);
+                  break;
+                case 'venerdì': 
+                  $(".venerdi ul li").last().remove(); 
+                  $(".venerdi ul").append(htmlFestivo);
+                  break;
+                case 'sabato': 
+                  $(".sabato ul li").last().remove(); 
+                  $(".sabato ul").append(htmlFestivo);
+                  break;
+                case 'domenica': 
+                  $(".domenica ul li").last().remove(); 
+                  $(".domenica ul").append(htmlFestivo);
+                  break;
+                default:
+                  console.log('Nobody Wins!');
+              }
             }
           });
         }

@@ -4,6 +4,31 @@
   box-sizing: border-box;
 }
 
+body{
+  
+  background: rgb(50, 54, 57);
+}
+
+h2{
+  color: white;
+  font-weight: bold;
+  font-size: 40px;
+}
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+}
+
+.container > div{
+  width: 14%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
 .red{
   color: red;
 }
@@ -19,14 +44,14 @@
   display: flex;  
   justify-content: center; 
   align-items: center;
-
 }
 
 .succ svg,
 .prec svg{
-  width: 30px;
+  width: 35px;
   margin-left: 20px;
   margin-right: 20px;
+  color: #4C4F9E;
 }
 
 svg:hover{
@@ -42,11 +67,26 @@ svg:hover{
   justify-content: space-evenly;
 }
 
+.step p{
+  color:#ADBAC4;
+  font-size: 20px;
+}
 .container{
   display: flex;
   justify-content: center;
+  align-items: baseline;
 }
 
 .capitalize {
   text-transform: capitalize;
+}
+
+ul{
+  list-style-type: none;
+  width: 50%;
+  text-align: center;}
+ul li{
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
 }
