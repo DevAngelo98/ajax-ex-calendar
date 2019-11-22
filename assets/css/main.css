@@ -28,6 +28,7 @@ h2{
   display: flex;
   flex-direction: column;
   color: white;
+  font-size: 18px;
 }
 .red{
   color: red;
@@ -38,6 +39,7 @@ h2{
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin-top: 30px;
 }
 
 .succ, .prec{
@@ -52,6 +54,7 @@ h2{
   margin-left: 20px;
   margin-right: 20px;
   color: #4C4F9E;
+  position: relative;
 }
 
 svg:hover{
@@ -62,9 +65,20 @@ svg:hover{
   transform: rotate(-180deg);
 }
 
+.succmove{
+  animation-name: movesuc;
+  animation-duration: 4s;
+}
+
+.precmove{
+  animation-name: moveprec;
+  animation-duration: 4s;
+}
+
 .step{
   display: flex;
   justify-content: space-evenly;
+  margin-top: 30px;
 }
 
 .step p{
@@ -83,10 +97,48 @@ svg:hover{
 
 ul{
   list-style-type: none;
-  width: 50%;
-  text-align: center;}
+  width: 100%;
+  text-align: center;
+  margin-top: 15px;
+}
+
 ul li{
-  margin-top: 30px;
+  height: 65px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  font-size: 15px;
+}
+
+ul li:hover {
+  border: 1px solid #757E85;
+  border-radius: 15px;
+  cursor: default;
+}
+
+
+.textGradient {
+  color: #ff8c00; /* fix for not webkit browsers */
+  background: linear-gradient(to right, #40e0d0, #ff8c00, #ff0080);
+  background-size: cover;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+@keyframes movesuc {
+  0%   {left: 0px;}
+  25%  {left: 20px;}
+  50%  {left: 5px;}
+  70%  {left: 15px;}
+  100% {left: 0px;}
+}
+
+@keyframes moveprec {
+  0%   {right: 0px;}
+  25%  {right: 20px;}
+  50%  {right: 5px;}
+  70%  {right: 15px;}
+  100% {right: 0px;}
 }

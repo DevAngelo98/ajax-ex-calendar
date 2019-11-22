@@ -40,10 +40,7 @@ $(document).ready(function(){
         var source = $("#template").html();
         var template = Handlebars.compile(source);
         var arrayRicevuto = datoRicevuto.response;
-        console.log(arrayRicevuto);
-       
 
-        
         for(var i=1; i<=numeroDiGiorni;i++){
           var dataControllo;
           var date = moment("2018-"+mese, "YYYY-M").format(i+" MMMM");
@@ -79,10 +76,6 @@ $(document).ready(function(){
               console.log('Nobody Wins!');
           }
           
-
-
-
-          // $(".date").append(html);
 
           arrayRicevuto.forEach(element => {
             dataControllo = moment(element.date, "YYYY-MM-DD").format("D MMMM");
@@ -134,4 +127,29 @@ $(document).ready(function(){
       }
     });
   }
+  $(".container > div").on("mouseenter", "li", function(){
+    $(this).parent().parent().find("h4").addClass("textGradient");
+    
+  });
+  $(".container > div").on("mouseleave", "li", function(){
+    $(this).parent().parent().find("h4").removeClass("textGradient");
+    
+  });
+
+  setInterval(movesuc,8000);
+  function movesuc(){
+    $(".succ svg").addClass("succmove");
+    $('.succ svg').on("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
+      $(this).removeClass("succmove");
+    });
+  }
+
+  setInterval(moveprec,8000);
+  function moveprec(){
+    $(".prec svg").addClass("precmove");
+    $('.prec svg').on("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
+      $(this).removeClass("precmove");
+    });
+  }
+
 });
